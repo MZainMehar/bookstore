@@ -7,11 +7,11 @@ import { Toaster } from "react-hot-toast";
 import { useAuth } from "./context/AuthProvider";
 import Admin from "./admin/Admin";
 
-function App() {
+export default function App() {
   const [authUser] = useAuth();
   console.log(authUser);
   return (
-    <>
+   
       <div className="dark:bg-slate-900 dark:text-white">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -24,8 +24,8 @@ function App() {
         </Routes>
         <Toaster />
       </div>
-    </>
+
   );
 }
 
-export default App;
+
