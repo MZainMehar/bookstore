@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-
 import axios from "axios";
-
 import Cards from "./Cards";
+
 function Freebook() {
   const [book, setBook] = useState([]);
+
   useEffect(() => {
     const getBook = async () => {
       try {
         const res = await axios.get("https://bookstore-api-vicn.onrender.com/book");
-
         const data = res.data.filter((data) => data.category === "Free");
         console.log(data);
         setBook(data);
@@ -26,11 +24,12 @@ function Freebook() {
 
   var settings = {
     dots: true,
-    infinite: false,
+    infinite: true, // Change to true for infinite looping
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    initialSlide: 0,
+    autoplay: true, // Enable autoplay
+    autoplaySpeed: 2000, // Set autoplay speed to 2 seconds
     responsive: [
       {
         breakpoint: 1024,
@@ -47,6 +46,8 @@ function Freebook() {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
+          autoplay: true, // Ensure autoplay is enabled in responsive settings as well
+          autoplaySpeed: 2000,
         },
       },
       {
@@ -54,13 +55,16 @@ function Freebook() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          autoplay: true, // Ensure autoplay is enabled in responsive settings as well
+          autoplaySpeed: 2000,
         },
       },
     ],
   };
+
   return (
     <>
-      <div className=" max-w-screen-2xl container mx-auto md:px-20 px-4">
+      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4">
         <div>
           <h1 className="font-semibold text-xl pb-2">Free Books</h1>
           <p>
@@ -69,7 +73,6 @@ function Freebook() {
             corporis nulla non suscipit, iure neque earum?
           </p>
         </div>
-
         <div>
           <Slider {...settings}>
             {book.map((item) => (
@@ -81,4 +84,5 @@ function Freebook() {
     </>
   );
 }
+
 export default Freebook;
