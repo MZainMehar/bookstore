@@ -168,6 +168,12 @@ function Navbar() {
               </div>
             )}
           </div>
+          <div>
+            <button className="px-2 ml-2 py-2 border rounded-md text-white bg-green-500">
+            <Link to="/admin">ADMIN</Link>
+              
+            </button>
+          </div>
         </div>
       </div>
     </>
