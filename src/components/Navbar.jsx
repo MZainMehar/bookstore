@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Login from "./Login";
 import Logout from "./Logout";
 import { useAuth } from "../context/AuthProvider";
@@ -10,6 +10,7 @@ function Navbar() {
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
   const element = document.documentElement;
+
   useEffect(() => {
     if (theme === "dark") {
       element.classList.add("dark");
@@ -23,6 +24,7 @@ function Navbar() {
   }, [theme]);
 
   const [sticky, setSticky] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -31,24 +33,27 @@ function Navbar() {
         setSticky(false);
       }
     };
+
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const navItems = (
     <>
       <li>
-        <a href="/">Home</a>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <a href="/course">Books</a>
+        <Link to="/course">Books</Link>
       </li>
       <li>
-        <a>Contact</a>
+        <Link to="/contact">Contact</Link>
       </li>
       <li>
-        <a>About</a>
+        <Link to="/about">About</Link>
       </li>
     </>
   );
